@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block 'nav_btn1' %}
+<h6>If you have an account, so just login !</h6>
+<button type="button" class="btn btn-primary mx-3" data-bs-toggle="modal" data-bs-target="#loginModal">
+  Login
+</button>
+{% endblock 'nav_btn1' %}
+
+{% block body %}
+<div class="container mb-3">
+ <form method="Post", action="/signup"> 
+ {% csrf_token %}    
+  <div class="mb-3">
+    <label for="name" class="form-label">Enter Your UserName</label>
+    <input type="text" class="form-control" id="name" placeholder="Make a unique username !" aria-describedby="emailHelp" name="username">
+    <div id="emailHelp" class="form-text">We'll never share your data with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="input_passwd" class="form-label">Enter Password of your account</label>
+    <input type="password" class="form-control" id="input_passwd" placeholder="Make a strong password !" name="passwd">
+  </div>
+  <div class="mb-3">
+    <label for="conf_passwd" class="form-label">Confrom your Password</label>
+    <input type="password" class="form-control" id="conf_passwd" placeholder="Re-type your password" name="conf_passwd">
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="check" name="checkbox">
+    <label class="form-check-label" for="check">Agree to make an account in our website</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Sign Up</button> 
+</form>
+</div>
+
+{% block 'model1' %}
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      {% comment %} from start here {% endcomment %}
+    <form method='post' action="/login">
+      {% csrf_token %}
+  <div class="mb-3">
+
+    <label for="username" class="form-label">Enter your username here !</label>
+    <input type="text" class="form-control" id="username" aria-describedby="emailHelp" name="usernm">
+    <div id="emailHelp" class="form-text">We'll never share your data with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="passwd" class="form-label">Password</label>
+    <input type="password" class="form-control" id="passwd" name="main_passwd">
+  </div>
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>
+{% comment %} from ends here  {% endcomment %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock 'model1' %}
+
+{% endblock body %}
